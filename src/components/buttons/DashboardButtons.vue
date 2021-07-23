@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row">
-      <div class="shadow p-3 mb-5 bg-body rounded">
+      <div class="shadow p-3 mb-2 bg-body rounded">
         <div class="dash-btn-center">
           <div>
             <button type="button" class="btn btn-primary dash-btn">Výpis</button>
