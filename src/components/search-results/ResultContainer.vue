@@ -6,6 +6,7 @@
         <pagination></pagination>
         <result-item></result-item>
         <result-item></result-item>
+        <result-item-modal></result-item-modal>
       </div>
     </div>
   </div>
@@ -15,6 +16,7 @@
 import ResultItem from "@/components/search-results/ResultItem";
 import LoadingCube from "@/components/animations/loading/LoadingCube";
 import Pagination from "@/components/pagination/Pagination";
+import ResultItemModal from "@/components/modals/ResultItemModal";
 export default {
   name: "ResultContainer",
   data() {
@@ -25,7 +27,8 @@ export default {
   components: {
     ResultItem,
     LoadingCube,
-    Pagination
+    Pagination,
+    ResultItemModal
   }
 }
 </script>

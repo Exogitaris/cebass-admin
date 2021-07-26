@@ -7,12 +7,12 @@
     </div>
     <div class="row g-0">
       <div class="col-md-7">
-        <img src="../../assets/images/testobrazek.png" class="img-fluid image-preview rounded-start" alt="...">
+        <img src="../../assets/images/testobrazek.png" onclick="window.open(this.src, '_blank');" class="img-fluid image-preview rounded-start" alt="...">
       </div>
       <div class="col-md-5">
         <div class="card-body">
           <div class="upravit-kartu">
-            <button class="btn btn-secondary">Upravit <fai icon="cog" size="1x"></fai></button>
+            <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">Upravit <fai icon="cog" size="1x"></fai></button>
           </div>
           <div style="display: inline-block">
             <h5 class="card-title text-uppercase">Bezpečnostní deficit</h5>
@@ -62,6 +62,7 @@ export default {
     width: 725px;
     height: 475px;
     padding-top: 1rem;
+    cursor: zoom-in;
   }
   .card-main-title {
     background-color: #f8f8f8;
