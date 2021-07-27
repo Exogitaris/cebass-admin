@@ -4,7 +4,7 @@
       <div class="form-container shadow p-3 mb-2 bg-body rounded">
         <div class="filter-section">
           <label><b>Pozemní komunikace</b></label>
-          <multiselect-input v-model="value" :options="options" :placeholder="'Vyberte komunikaci'" :multiple="true"></multiselect-input>
+          <multiselect-input v-model="komunikaceOption.komunikace" @select="pridatKomunikaci" @remove="smazatKomunikaci" :options="komunikaceOption.roletaKomunikace" :placeholder="'Vyberte komunikaci'" :multiple="true"></multiselect-input>
           <br>
           <label><b>Správce</b></label>
           <multiselect-input v-model="value" :options="options" :placeholder="'Vyberte správce'" :multiple="true"></multiselect-input>
@@ -67,20 +67,31 @@
 
 <script>
 import MultiselectInput from '@/components/forms/MultiselectInput'
+import komunikace from '/src/rolety/komunikace.json'
+import DashboardFormFunctions from "@/functions/DashboardFormFunctions";
+
 export default {
 name: "DashboardForm",
   data () {
     return {
       value: [],
+      komunikaceOption: {
+        komunikace: [],
+        vybranaKomunikace: [],
+        roletaKomunikace: komunikace,
+      },
       options: [
         { name: 'Vue.js', language: 'JavaScript' },
-        { name: 'Adonis', language: 'JavaScript' },
-        { name: 'Rails', language: 'Ruby' },
-        { name: 'Sinatra', language: 'Ruby' },
-        { name: 'Laravel', language: 'PHP' },
-        { name: 'Phoenix', language: 'Elixir' }
-      ]
+      ],
     }
+  },
+  methods: {
+    pridatKomunikaci(komunikace) {
+      DashboardFormFunctions.vybratData(komunikace, 'GET_DATA_BY_KOMUNIKACE', this.komunikaceOption.vybranaKomunikace)
+    },
+    smazatKomunikaci(komunikace) {
+      DashboardFormFunctions.smazatData(komunikace, this.komunikaceOption.vybranaKomunikace)
+    },
   },
   components: {
     MultiselectInput
