@@ -13,12 +13,13 @@ export default {
     },
     actions: {
         async GET_DATA_BY_KOMUNIKACE(context, payload) {
+            console.log(payload)
             return new Promise((resolve, reject) => {
-                axios.get('' + '['+payload+']')
+                axios.post('', payload)
                     .then(res => {
                         resolve(
                             res,
-                            context.commit('', res.data)
+                            context.commit('SET_DATA_KOMUNIKACE', res.data)
                         )
                     })
                     .catch(err => {
