@@ -1,6 +1,6 @@
 import store from "@/store";
 
-let DashboardFormFunctions = {
+let FormFce = {
     vybratData(data, vuexFunkce, options) {
         const array = options
         array.push(Number(data.value))
@@ -18,4 +18,4 @@ let DashboardFormFunctions = {
     }
 }
 
-export default DashboardFormFunctions
+export default FormFce;

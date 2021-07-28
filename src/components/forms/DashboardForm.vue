@@ -68,7 +68,7 @@
 <script>
 import MultiselectInput from '@/components/forms/MultiselectInput'
 import komunikace from '/src/rolety/komunikace.json'
-import DashboardFormFunctions from "@/functions/DashboardForm/DashboardFormFunctions";
+import FormFce from "@/functions/DashboardForm/DashboardFormFunctions";
 
 export default {
 name: "DashboardForm",
@@ -87,10 +87,10 @@ name: "DashboardForm",
   },
   methods: {
     pridatKomunikaci(komunikace) {
-      DashboardFormFunctions.vybratData(komunikace, 'GET_DATA_BY_KOMUNIKACE', this.komunikaceOption.vybranaKomunikace)
+      FormFce.vybratData(komunikace, 'GET_DATA_BY_KOMUNIKACE', this.komunikaceOption.vybranaKomunikace)
     },
     smazatKomunikaci(komunikace) {
-      DashboardFormFunctions.smazatData(komunikace, 'GET_DATA_BY_KOMUNIKACE', this.komunikaceOption.vybranaKomunikace)
+      FormFce.smazatData(komunikace, 'GET_DATA_BY_KOMUNIKACE', this.komunikaceOption.vybranaKomunikace)
     },
   },
   components: {
