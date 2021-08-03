@@ -1,10 +1,10 @@
 import { createStore } from "vuex";
 
-import searchResultsRoads from '@/store/modules/searchResultsRoads'
+import dashboardForm from '@/store/modules/dashboardForm'
 
 const store = createStore({
     modules: {
-        searchResultsRoads
+        dashboardForm
     }
 })
 

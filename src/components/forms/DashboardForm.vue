@@ -4,10 +4,10 @@
       <div class="form-container shadow p-3 mb-2 bg-body rounded">
         <div class="filter-section">
           <label><b>Pozemní komunikace</b></label>
-          <multiselect-input v-model="komunikaceOption.komunikace" @select="pridatKomunikaci" @remove="smazatKomunikaci" :options="komunikaceOption.roletaKomunikace" :placeholder="'Vyberte komunikaci'" :multiple="true"></multiselect-input>
+          <multiselect-input v-model="komunikaceOption.komunikace" @select="pridatKomunikaci" @remove="smazatKomunikaci" :options="this.komunikaceData.length === 0 ? komunikaceOption.roletaKomunikace : this.komunikaceData" :placeholder="'Vyberte komunikaci'" :multiple="true"></multiselect-input>
           <br>
           <label><b>Správce</b></label>
-          <multiselect-input v-model="value" :options="options" :placeholder="'Vyberte správce'" :multiple="true"></multiselect-input>
+          <multiselect-input v-model="spravceOption.spravce" @select="pridatSpravce" @remove="smazatSpravce" :options="this.spravceData.length === 0 ? spravceOption.roletaSpravce : this.spravceData" :placeholder="'Vyberte správce'" :multiple="true"></multiselect-input>
           <br>
           <label><b>Charakter záznamu</b></label>
           <multiselect-input v-model="value" :options="options" :placeholder="'Vyberte charakter záznamu'" :multiple="true"></multiselect-input>
@@ -66,20 +66,28 @@
 </template>
 
 <script>
+
+import { mapGetters } from 'vuex'
 import MultiselectInput from '@/components/forms/MultiselectInput'
 import komunikace from '/src/rolety/komunikace.json'
+import spravce from '/src/rolety/spravce.json'
 import FormFce from "@/functions/DashboardForm/DashboardFormFunctions";
 
 export default {
 name: "DashboardForm",
   data () {
     return {
-      value: [],
       komunikaceOption: {
         komunikace: [],
         vybranaKomunikace: [],
         roletaKomunikace: komunikace,
       },
+      spravceOption: {
+        spravce: [],
+        vybranySpravce: [],
+        roletaSpravce: spravce
+      },
+      value: [],
       options: [
         { name: 'Vue.js', language: 'JavaScript' },
       ],
@@ -92,9 +100,18 @@ name: "DashboardForm",
     smazatKomunikaci(komunikace) {
       FormFce.smazatData(komunikace, 'GET_DATA_BY_KOMUNIKACE', this.komunikaceOption.vybranaKomunikace)
     },
+    pridatSpravce(spravce) {
+      FormFce.vybratData(spravce, 'GET_DATA_BY_SPRAVCE', this.spravceOption.vybranySpravce)
+    },
+    smazatSpravce(spravce) {
+      FormFce.smazatData(spravce, 'GET_DATA_BY_SPRAVCE', this.spravceOption.vybranySpravce)
+    },
   },
   components: {
     MultiselectInput
+  },
+  computed: {
+    ...mapGetters(['spravceData', 'komunikaceData'])
   }
 }
 </script>
