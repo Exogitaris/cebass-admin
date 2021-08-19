@@ -5,19 +5,22 @@
         <h4 class="chart-container-title">Rychlý statistický přehled správce David Maletínský - Programátor CEBASS</h4>
         <hr>
         <div class="charts-center">
-          <div>
+          <div ref="printMe">
             <span style="display: inline-block"><GChart type="PieChart" :data="chartData" :options="chartOptions" /></span>
             <span style="display: inline-block"><GChart type="PieChart" :data="chartData" :options="chartOptions" /></span>
             <span style="display: inline-block"><GChart type="PieChart" :data="chartData" :options="chartOptions" /></span>
           </div>
         </div>
       </div>
+      <button @click="printImage($refs.printMe)">print</button>
     </div>
   </div>
 </template>
 
 <script>
 import { GChart } from "vue3-googl-chart";
+import html2png from "@/functions/HtmlToImages/HtmlToImageFunctions";
+
 export default {
 name: "ChartContainer",
   data() {
@@ -37,7 +40,13 @@ name: "ChartContainer",
         colors: ['#99CC00', '#FF9900', '#FF3300'],
         chartArea: { width: '80%' }
       },
-    };
+      output: null
+    }
+  },
+  methods: {
+    printImage(selectedImage) {
+      html2png.selectImage(selectedImage)
+    }
   },
   components: {
     GChart
