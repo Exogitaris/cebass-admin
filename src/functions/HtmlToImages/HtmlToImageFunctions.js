@@ -9,9 +9,6 @@ let html2png = {
             return canvas;
         }
     },
-    selectImage(selectedRef) {
-        this.prepareImage(selectedRef)
-    },
     async prepareImage(selectedRef) {
         const el = selectedRef
         const options = {
